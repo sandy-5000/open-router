@@ -33,7 +33,7 @@ def get_response(json_response):
             response += f'\n\n______ {k} ______\n\n'
             response += v
         return response
-    
+
     else:
         json_data = json.dumps(json_response, indent=2)
         print(json_data)
@@ -69,10 +69,14 @@ def request_model(query):
 
 
 if __name__ == '__main__':
-    
+
     while True:
 
-        query = input(f'\n\n({selected_model})>>> ').strip()
+        try:
+            query = input(f'\n\n({selected_model})>>> ').strip()
+        except KeyboardInterrupt:
+            print('Keyboard Interrupt')
+            continue
 
         if len(query) == 0:
             print('the prompt you provided is empty........')
@@ -81,10 +85,10 @@ if __name__ == '__main__':
         if query[0] == ':':
 
             if query == ':q':
-                break        
+                break
 
             elif query == ':cm':
-            
+
                 model_names = list(models.keys())
                 for i, v in enumerate(model_names, start=1):
                     print(f'{i}) {v}')
@@ -97,16 +101,17 @@ if __name__ == '__main__':
                         print('Invalid model number')
                 except:
                     print('Invalid model number')
-            
+
             else:
 
                 print('\nInvalid command........')
-        
+
         else:
 
             try:
-                print('fetching ....')
+                print('Fetching ....')
                 request_model(query)
+            except KeyboardInterrupt:
+                print('Request cancelled :(')
             except:
                 print('Got error in fetching or formatting response.........')
-            
