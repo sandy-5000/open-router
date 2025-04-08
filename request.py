@@ -11,8 +11,10 @@ selected_model = 'qwen-2.5'
 
 models = {
     'qwen-2.5': 'qwen/qwen2.5-vl-3b-instruct:free',
+    'quasar-alpha': 'openrouter/quasar-alpha',
     'deepseek-r1': 'deepseek/deepseek-r1-zero:free',
     'llama-3.2': 'meta-llama/llama-3.2-1b-instruct:free',
+    'llama-4.0': 'meta-llama/llama-4-maverick:free',
     'gemini-2.5': 'google/gemini-2.5-pro-exp-03-25:free',
 }
 
@@ -20,7 +22,7 @@ def get_response(json_response):
 
     response = ''
 
-    if selected_model in ['qwen-2.5', 'deepseek-r1', 'llama-3.2', 'gemini-2.5']:
+    if selected_model in ['qwen-2.5', 'quasar-alpha', 'deepseek-r1', 'llama-3.2', 'llama-4.0', 'gemini-2.5']:
 
         choices = json_response['choices']
         if type(choices) != list or len(choices) == 0:
